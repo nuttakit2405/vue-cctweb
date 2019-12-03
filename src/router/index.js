@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
 import Profile from '@/components/Profile'
+import Lameyer from '@/components/Lameyer'
 import firebase from 'firebase'
 
 Vue.use(Router)
@@ -29,6 +30,11 @@ let router = new Router({
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/lameyer',
+    name: 'Lameyer',
+    component: Lameyer
   }]
 })
 

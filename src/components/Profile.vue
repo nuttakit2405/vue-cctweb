@@ -25,6 +25,15 @@
                 </div>
             </div>
         </div>
+        <!-- <h1>{{counter}}</h1> -->
+        <div class="level-item" style="margin-top:10px;">
+          <div class="box">
+            <input v-model="fullName" type="text" value="" placeholder="ชื่อ - นามสกุล" class="input is-small" style="margin-bottom:5px;">
+            <input v-model="userType" type="text" placeholder="ต่ำแหน่ง" class="input is-small" style="margin-bottom:5px;">
+            <input v-model="userNo" type="text" placeholder="รหัสพนักงาน" class="input is-small" style="margin-bottom:5px;">
+            <button @click="updateUser" class="button is-small is-success">UP+</button>
+          </div>
+        </div>
     </section>
 </template>
 
@@ -35,7 +44,8 @@ import firebase from 'firebase'
 export default {
   data () {
     return {
-      user: null
+      user: null,
+      counter: 1
     }
   },
   components: {
@@ -47,6 +57,28 @@ export default {
         this.user = user
       }
     })
+    this.dbRefUser = firebase.database().ref('cctUser')
+  },
+  mounted () {
+    this.dbRef.on('value', ss => {
+      console.log(ss.val())
+    })
+  },
+  beforeDestroy () {
+    this.dbRefUser.off()
+  },
+  methods: {
+    async updateUser () {
+    //   this.counter++
+    // this.dbRef.set(this.counter++)
+      const saveProfile = {
+        fullName: this.fullName,
+        userType: this.userType,
+        userNo: this.userNo,
+        userEmail: this.user.email
+      }
+      await this.dbRefUser.child(this.user.id).set(saveProfile)
+    }
   }
 }
 </script>

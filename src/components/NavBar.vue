@@ -1,6 +1,6 @@
 <template>
   <div class="" style="padding:0.5%;background-color:#363636;">
-    <div class="level" >
+    <div class="level container" >
       <div class="level-left">
         <router-link to="/" tag="a">
           <p class="title is-4" style="color:white;">Home</p>
