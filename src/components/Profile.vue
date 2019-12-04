@@ -38,7 +38,6 @@
 </template>
 
 <script>
-import navigation from '@/components/NavBar.vue'
 import firebase from 'firebase'
 
 export default {
@@ -49,7 +48,6 @@ export default {
     }
   },
   components: {
-    navigation
   },
   created () {
     firebase.auth().onAuthStateChanged(user => {
