@@ -1,12 +1,10 @@
 <template>
   <div style="background-image: url('/static/img/banner_01.png');width:100%;height: 100vh;background-position: 50% 50%;">
-    <navigation></navigation>
     <div id="firebaseui-auth-container" ></div>
   </div>
 </template>
 
 <script>
-import navigation from '@/components/NavBar.vue'
 import firebase from 'firebase'
 import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
@@ -17,7 +15,6 @@ export default {
     return {}
   },
   components: {
-    navigation
   },
   mounted () {
     let ui = firebaseui.auth.AuthUI.getInstance()
