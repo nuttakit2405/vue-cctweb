@@ -6,8 +6,8 @@
         <div class="card horizontal" style="max-width:400px;margin:0 auto;" v-if="user">
             <div class="card-image" style="margin-top:25px;margin-left:10px;">
                 <img
-                    :src="user.photoURL"
-                    style="width:75px;height:75px;border-radius:50%;border:4px solid #333"
+                  :src="user.photoURL"
+                  style="width:75px;height:75px;border-radius:50%;border:4px solid #333"
                 />
             </div>
             <div class="card-stacked">
@@ -19,13 +19,13 @@
                         <strong>{{user.email}}</strong>
                         <br />uid:
                         <strong>{{user.uid}}</strong>
-                        <br />provider:
-                        <strong class="teal-text">{{user.providerData[0].providerId}}</strong>
+                        <!-- <br />provider:
+                        <strong class="teal-text">{{user.providerData[0].providerId}}</strong> -->
                     </p>
                 </div>
             </div>
         </div>
-        <!-- <h1>{{counter}}</h1> -->
+        <!-- <h1>{{counter}}</h1> <button @click="ups">++</button> -->
         <div class="level-item" style="margin-top:10px;">
           <div class="box">
             <input v-model="fullName" type="text" value="" placeholder="ชื่อ - นามสกุล" class="input is-small" style="margin-bottom:5px;">
@@ -44,7 +44,11 @@ export default {
   data () {
     return {
       user: null,
-      counter: 1
+      counter: 1,
+      fullName: '',
+      userType: '',
+      userNo: '',
+      userEmail: ''
     }
   },
   components: {
@@ -55,10 +59,10 @@ export default {
         this.user = user
       }
     })
-    this.dbRefUser = firebase.database().ref('cctUser')
+    this.dbRefUser = firebase.database()
   },
   mounted () {
-    this.dbRef.on('value', ss => {
+    this.dbRefUser.on('value', ss => {
       console.log(ss.val())
     })
   },
@@ -67,15 +71,13 @@ export default {
   },
   methods: {
     async updateUser () {
-    //   this.counter++
-    // this.dbRef.set(this.counter++)
       const saveProfile = {
         fullName: this.fullName,
         userType: this.userType,
         userNo: this.userNo,
         userEmail: this.user.email
       }
-      await this.dbRefUser.child(this.user.id).set(saveProfile)
+      await this.dbRefUser.ref('cctUser').child(this.user.uid).set(saveProfile)
     }
   }
 }
