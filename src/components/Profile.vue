@@ -28,6 +28,7 @@
         </div>
         <!-- <h1>{{counter}}</h1> <button @click="ups">++</button> -->
         <div v-if="!editProfileStat" class="level-item" style="margin-top:10px;">
+        <div class="level-item" style="margin-top:10px;">
           <div class="box">
             <input v-model="fullName" type="text" value="" placeholder="ชื่อ - นามสกุล" class="input is-small" style="margin-bottom:5px;">
             <input v-model="userType" type="text" placeholder="ต่ำแหน่ง" class="input is-small" style="margin-bottom:5px;">
@@ -52,6 +53,7 @@ export default {
       userNo: '',
       userEmail: '',
       editProfileStat: true
+      userEmail: ''
     }
   },
   components: {
