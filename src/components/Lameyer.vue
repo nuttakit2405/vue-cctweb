@@ -13,6 +13,7 @@
           <img class="preview" :src="picture">
         <button @click="onUpload">Upload</button>
       </div>
+      <img class="preview" :src="picture">
   </div>
 </template>
 
@@ -35,6 +36,8 @@ export default {
       this.uploadValue = 0
       this.picture = null
       this.imageData = event.target.files[0]
+    },
+    getfile () {
     },
     onUpload () {
       this.picture = null
